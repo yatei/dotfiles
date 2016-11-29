@@ -1,8 +1,8 @@
 alias v nvim
 alias l ls
-alias ga git add
-alias gp git push
-alias gc git commit
+alias ga 'git add -A'
+alias gp 'git push -u origin master'
+alias gc 'git commit'
 set fish_greeting ""
 
 alias s1 `cat ~/.config/fish/logincis`
