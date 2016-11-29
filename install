@@ -1,0 +1,33 @@
+#!/usr/local/bin/fish
+
+#tmux
+if ls ~/.tmux.conf > /dev/null
+	rm ~/.tmux.conf
+end
+	ln -s ~/dotfile/.tmux.conf ~/
+
+#.config/ check
+if ls ~/.config > /dev/null
+else
+	mkdir ~/.config
+end
+
+#fish
+if ls ~/.config/fish > /dev/null
+	if ls ~/.config/fish/config.fish > /dev/null
+		rm ~/.config/fish/config.fish
+	end
+	ln -s ~/dotfile/config.fish ~/.config/fish/
+else
+	mkdir ~/.config/fish
+end
+
+#nvim
+if ls ~/.config/nvim > /dev/null
+	if ls ~/.config/nvim/init.vim > /dev/null
+		rm ~/.config/nvim/init.vim
+	end
+	ln -s ~/dotfile/init.vim ~/.config/nvim/
+else
+	mkdir ~/.config/nvim
+end
