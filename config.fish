@@ -4,12 +4,11 @@ alias ga 'git add -A'
 alias gp 'git push -u origin master'
 alias gc 'git commit'
 set fish_greeting ""
+source ~/.config/fish/secret
 
-alias s1 `cat ~/.config/fish/logincis`
-
-if tmux list-sessions | grep attached
+if tmux list-sessions | grep attached >&-
 	clear
-else if tmux list-sessions
+else if tmux list-sessions >&-
 	tmux attach
 else
 	tmux
