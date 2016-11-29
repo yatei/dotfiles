@@ -3,6 +3,8 @@ alias l ls
 alias ga 'git add -A'
 alias gp 'git push -u origin master'
 alias gc 'git commit'
+alias gpl 'git pull'
+alias gcl 'git clone'
 set fish_greeting ""
 set -U EDITOR nvim
 
