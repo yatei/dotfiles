@@ -22,5 +22,3 @@ end
 function isdir
 	file $argv | grep directory > /dev/null
 end
-
-#todo:fishの暗黙cdの感覚でテキストファイルだった場合暗黙vimがしたい
