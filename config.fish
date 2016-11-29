@@ -1,6 +1,8 @@
-alias v vim
+alias v nvim
 alias l ls
 set fish_greeting ""
+
+alias s1 `cat ~/.config/fish/logincis`
 
 if tmux list-sessions | grep attached
 	clear
