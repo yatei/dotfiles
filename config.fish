@@ -1,5 +1,6 @@
 alias v nvim
 alias l ls
+alias t tmux
 alias ga 'git add -A'
 alias gp 'git push -u origin master'
 alias gc 'git commit'
@@ -17,3 +18,9 @@ else if tmux list-sessions >&-
 else
 	tmux
 end
+
+function isdir
+	file $argv | grep directory > /dev/null
+end
+
+#todo:fishの暗黙cdの感覚でテキストファイルだった場合暗黙vimがしたい
