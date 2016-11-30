@@ -20,5 +20,5 @@ else
 end
 
 function isdir
-	file $argv | grep directory > /dev/null
+	file $argv | grep directory >&-
 end
