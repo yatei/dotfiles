@@ -1,3 +1,5 @@
+#vim:filetype=conf
+
 alias v nvim
 alias l ls
 alias t tmux

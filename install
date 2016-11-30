@@ -4,7 +4,7 @@
 if ls ~/.tmux.conf > /dev/null 2>&1
 	rm ~/.tmux.conf
 end
-ln -s ~/dotfile/.tmux.conf ~/
+ln -s ~/dotfile/tmux.conf ~/.tmux.conf
 if [ $status -eq 1 ];false;end;exit
 
 
