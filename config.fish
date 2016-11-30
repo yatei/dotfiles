@@ -3,12 +3,14 @@
 alias v nvim
 alias l ls
 alias t tmux
+alias o open
+alias b 'build'
 alias ga 'git add -A'
 alias gp 'git push -u origin master'
 alias gc 'git commit'
 alias gpl 'git pull'
 alias gcl 'git clone'
-set fish_greeting ""
+set fish_greeting ''
 set -U EDITOR nvim
 
 source ~/.config/fish/secret
@@ -23,4 +25,31 @@ end
 
 function isdir
 	file $argv | grep directory >&-
+end
+
+function build
+  switch $argv
+    case *.c or *.cpp or *.cc
+      gcc $argv
+    case *.rb
+      ruby $argv
+    case *.pl
+      perl $perl
+    case *.php
+      php $argv
+    case *.py
+      python $argv
+    case *.sh
+      sh $argc
+    case *.swift
+      swift $argv
+    case *.java
+      javac $argv
+    case *.tex
+      platex $argv
+      dvipdfmx (basename $argv .tex)
+      rm -f (basename $argv .tex).log (basename $argv .tex).aux (basename $argv .tex).dvi
+    case '*'
+      echo 'unknown filetype'
+  end
 end

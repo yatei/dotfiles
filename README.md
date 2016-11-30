@@ -1,3 +1,4 @@
+Mac用
 install:
 
 ```

@@ -2,7 +2,7 @@
 set number title ruler showmatch smartindent ignorecase smartcase wrapscan expandtab list
 set foldmethod=syntax
 set tabstop=2
-set shiftwidth=2
+set shiftwidth=4
 set display=lastline
 set pumheight=4
 set matchtime=1
