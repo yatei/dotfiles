@@ -1,4 +1,3 @@
-"自分で設定した分
 set number title ruler showmatch smartindent ignorecase smartcase wrapscan expandtab list
 set foldmethod=syntax
 set tabstop=2
@@ -8,7 +7,6 @@ set pumheight=4
 set matchtime=1
 colorscheme delek
 filetype plugin indent on
-"ここまで
 
 "deinとswiftの設定(コピペ)
 let s:dein_dir = expand('/Users/yuma/.vim/dein')

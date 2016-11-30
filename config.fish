@@ -4,12 +4,21 @@ alias v nvim
 alias l ls
 alias t tmux
 alias o open
+alias g git
 alias b 'build'
 alias ga 'git add -A'
 alias gp 'git push -u origin master'
 alias gc 'git commit'
+alias gd 'git diff'
+alias gs 'git show'
+alias gch 'git checkout'
+alias gsb 'git show-branch'
 alias gpl 'git pull'
 alias gcl 'git clone'
+alias ta 'tmux attach'
+alias tl 'tmus list-sessions'
+alias td 'tmux detach'
+
 set fish_greeting ''
 set -U EDITOR nvim
 
