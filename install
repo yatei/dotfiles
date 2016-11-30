@@ -8,7 +8,7 @@ ln -s ~/dotfile/tmux.conf ~/.tmux.conf
 if [ $status -eq 1 ];false;end;exit
 
 
-#.config/ check
+#.config/ dir check
 if ls ~/.config > /dev/null 2>&1
 else
 	mkdir ~/.config

@@ -32,8 +32,12 @@ else
 	tmux
 end
 
-function isdir
-	file $argv | grep directory >&-
+function a
+    if file $argv | grep directory >/dev/null
+        cd $argv
+    else
+        v $argv
+    end
 end
 
 function build
