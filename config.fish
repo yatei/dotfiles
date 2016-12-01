@@ -18,11 +18,15 @@ alias gcl 'git clone'
 alias ta 'tmux attach'
 alias tl 'tmus list-sessions'
 alias td 'tmux detach'
+alias ec 'nvim ~/dotfile'
+alias ef 'nvim ~/.config/fish/config.fish'
+alias et 'nvim ~/.tmux.conf'
+alias ev 'nvim ~/.config/nvim/init.vim'
 
 set fish_greeting ''
 set -U EDITOR nvim
 
-source ~/.config/fish/secret
+. ~/.config/fish/secret.fish
 
 if tmux list-sessions | grep attached >&-
 	clear
