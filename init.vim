@@ -7,6 +7,11 @@ set pumheight=4
 set matchtime=1
 colorscheme delek
 filetype plugin indent on
+vnoremap <C-;> <Esc>
+cnoremap <C-;> <Esc>
+inoremap <C-;> <Esc>
+
+
 "カーソル位置復元
 if has("autocmd")
     autocmd BufReadPost *
@@ -16,7 +21,7 @@ if has("autocmd")
 endif
 
 "deinとswiftの設定(コピペ)
-let s:dein_dir = expand('/Users/yuma/.vim/dein')
+let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:deoplete#enable_at_startup = 1

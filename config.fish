@@ -18,7 +18,7 @@ alias gcl 'git clone'
 alias ta 'tmux attach'
 alias tl 'tmus list-sessions'
 alias td 'tmux detach'
-alias ec 'nvim ~/dotfile'
+alias ec 'nvim ~/dotfiles'
 alias ef 'nvim ~/.config/fish/config.fish'
 alias et 'nvim ~/.tmux.conf'
 alias ev 'nvim ~/.config/nvim/init.vim'
@@ -46,7 +46,7 @@ end
 
 function build
   switch $argv
-    case *.c or *.cpp or *.cc
+    case *.c
       gcc $argv
     case *.rb
       ruby $argv

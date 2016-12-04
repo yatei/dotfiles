@@ -1,0 +1,2 @@
+#!/bin/zsh
+if [ `/usr/libexec/PlistBuddy -c "Print AppleSelectedInputSources:0:'Input Mode'" ~/Library/Preferences/com.apple.HIToolbox.plist` ];then; echo 'JP';else;echo 'US';fi
