@@ -1,4 +1,4 @@
-set number title ruler showmatch smartindent ignorecase smartcase wrapscan expandtab list
+set number title ruler showmatch smartindent ignorecase smartcase wrapscan expandtab list cursorline
 set foldmethod=syntax
 set tabstop=2
 set shiftwidth=4

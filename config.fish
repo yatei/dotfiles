@@ -16,7 +16,7 @@ alias gsb 'git show-branch'
 alias gpl 'git pull'
 alias gcl 'git clone'
 alias ta 'tmux attach'
-alias tl 'tmus list-sessions'
+alias tl 'tmux list-sessions'
 alias td 'tmux detach'
 alias ec 'nvim ~/dotfiles'
 alias ef 'nvim ~/.config/fish/config.fish'
@@ -29,44 +29,42 @@ set -U EDITOR nvim
 . ~/.config/fish/secret.fish
 
 if tmux list-sessions | grep attached >&-
-	clear
+    clear
 else if tmux list-sessions >&-
-	tmux attach
+    tmux attach
 else
-	tmux
+    tmux
 end
 
-function a
-    if file $argv | grep directory >/dev/null
-        cd $argv
-    else
-        v $argv
-    end
+function g
+    ga
+    gc -m "auto commit"
+    gp
 end
 
 function build
-  switch $argv
-    case *.c
-      gcc $argv
-    case *.rb
-      ruby $argv
-    case *.pl
-      perl $perl
-    case *.php
-      php $argv
-    case *.py
-      python $argv
-    case *.sh
-      sh $argc
-    case *.swift
-      swift $argv
-    case *.java
-      javac $argv
-    case *.tex
-      platex $argv
-      dvipdfmx (basename $argv .tex)
-      rm -f (basename $argv .tex).log (basename $argv .tex).aux (basename $argv .tex).dvi
-    case '*'
-      echo 'unknown filetype'
-  end
+    switch $argv
+        case *.c
+            gcc $argv
+        case *.rb
+            ruby $argv
+        case *.pl
+            perl $perl
+        case *.php
+            php $argv
+        case *.py
+            python $argv
+        case *.sh
+            sh $argc
+        case *.swift
+            swift $argv
+        case *.java
+            javac $argv
+        case *.tex
+            platex $argv
+            dvipdfmx (basename $argv .tex)
+            rm -f (basename $argv .tex).log (basename $argv .tex).aux (basename $argv .tex).dvi
+        case '*'
+            echo 'unknown filetype'
+    end
 end
