@@ -110,8 +110,3 @@ function fish_prompt --description 'Write out the prompt'
 
     end
 end
-
-
-function pdfview
-    pdftotext -nopgbrk -layout $1 -|less
-end
