@@ -39,7 +39,7 @@ else
     tmux
 end
 
-function g
+function gauto
     ga
     gc -m "auto commit"
     gp
