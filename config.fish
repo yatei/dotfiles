@@ -27,6 +27,8 @@ alias ev 'nvim ~/.config/nvim/init.vim'
 set fish_greeting ''
 set -U EDITOR nvim
 
+set PATH $PATH ~/app/bin
+
 . ~/.config/fish/secret.fish
 
 if tmux list-sessions | grep attached >&-
