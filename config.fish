@@ -23,6 +23,7 @@ alias ec 'nvim ~/dotfiles'
 alias ef 'nvim ~/.config/fish/config.fish'
 alias et 'nvim ~/.tmux.conf'
 alias ev 'nvim ~/.config/nvim/init.vim'
+alias lr 'ls -R'
 
 set fish_greeting ''
 set -U EDITOR nvim
@@ -49,6 +50,8 @@ function build
     switch $argv
         case *.c
             gcc $argv
+	case *.cc
+	    g++ $argv
         case *.rb
             ruby $argv
         case *.pl
