@@ -21,6 +21,7 @@ if has("autocmd")
 endif
 
 "deinとswiftの設定(コピペ)
+let g:python3_host_prog = '/usr/local/bin/python3'
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 let g:indent_guides_enable_on_vim_startup = 1
