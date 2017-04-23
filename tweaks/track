@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+osascript -e 'tell application "iTunes"' -e 'the name of current track' -e 'end tell'

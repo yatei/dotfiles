@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+osascript -e "(get Volume settings)'s output volume"

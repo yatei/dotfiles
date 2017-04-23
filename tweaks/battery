@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ioreg -l|grep CurrentCapacity|tr '= ' '\n'|tail -n 1

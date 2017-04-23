@@ -1,7 +1,8 @@
-set number title ruler showmatch smartindent ignorecase smartcase wrapscan expandtab list cursorline
+set number title ruler showmatch smartindent ignorecase smartcase wrapscan list cursorline
+set listchars=tab:»-,trail:-,nbsp:%,eol:⏎
 set foldmethod=syntax
 set tabstop=2
-set shiftwidth=4
+set shiftwidth=2
 set display=lastline
 set pumheight=4
 set matchtime=1
@@ -11,7 +12,6 @@ vnoremap <C-;> <Esc>
 cnoremap <C-;> <Esc>
 inoremap <C-;> <Esc>
 
-
 "カーソル位置復元
 if has("autocmd")
     autocmd BufReadPost *
@@ -20,11 +20,28 @@ if has("autocmd")
     \ endif
 endif
 
+"全角スペース可視化
+if has("syntax")
+    syntax on
+    syn sync fromstart
+    function! ActivateInvisibleIndicator()
+        syntax match InvisibleJISX0208Space "　" display containedin=ALL
+        highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
+    endfunction
+    augroup invisible
+        autocmd! invisible
+        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
+    augroup END
+endif
+
+"quickrun用
+set splitbelow
+set splitright
+
 "deinとswiftの設定(コピペ)
 let g:python3_host_prog = '/usr/local/bin/python3'
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-let g:indent_guides_enable_on_vim_startup = 1
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#swift#daemon_autostart = 1
 
@@ -46,8 +63,9 @@ call dein#add('landaire/deoplete-swift')
 call dein#add('kballard/vim-swift')
 call dein#add('keith/swift.vim')
 call dein#add('scrooloose/nerdtree')
-call dein#add('nathanaelkane/vim-indent-guides')
-call dein#add('bronson/vim-trailing-whitespace')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('thinca/vim-quickrun')
+call dein#add('derekwyatt/vim-scala')
 "call dein#add('')
 call dein#end()
 if dein#check_install()
