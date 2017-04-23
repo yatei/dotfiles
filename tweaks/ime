@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# if /usr/libexec/PlistBuddy -c 'Print AppleSelectedInputSources' ~/Library/Preferences/com.apple.HIToolbox.plist|grep -Eo 'Japanese'>/dev/null; then
-# 	echo 'あ'
-# else
-# 	echo 'Ａ'
-# fi
-if /usr/libexec/PlistBuddy -c 'Print AppleSelectedInputSources' ~/Library/Preferences/com.apple.HIToolbox.plist|grep -Eo 'Japanese'>/dev/null; then; echo 'あ'; else; echo 'Ａ'; fi
