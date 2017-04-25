@@ -33,123 +33,127 @@ set PATH $PATH ~/app/bin ~/dotfiles
 . ~/.config/fish/secret.fish
 
 if tmux list-sessions | grep attached >&-
-    clear
+	clear
 else if tmux list-sessions >&-
-    tmux attach
+	tmux attach
 else
-    tmux
+	tmux
 end
 
 function gauto
-    ga
-    gc -m "auto commit"
-    gp
+	ga
+	gc -m "auto commit"
+	gp origin master
 end
 
 function gcv
-        g++ -I/usr/local/Cellar/opencv/2.4.13.2/include/opencv -I/usr/local/Cellar/opencv/2.4.13.2/include -L/usr/local/Cellar/opencv/2.4.13.2/lib -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_highgui -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_nonfree -lopencv_objdetect -lopencv_ocl -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab $argv
+	g++ -I/usr/local/Cellar/opencv/2.4.13.2/include/opencv -I/usr/local/Cellar/opencv/2.4.13.2/include -L/usr/local/Cellar/opencv/2.4.13.2/lib -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_highgui -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_nonfree -lopencv_objdetect -lopencv_ocl -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab $argv
 end
 
 function build
-    switch $argv
-        case *.c
-            gcc $argv -o (basename $argv .c)
-        case *.cc
-            g++ $argv
-        case *.rb
-            ruby $argv
-        case *.pl
-            perl $perl
-        case *.php
-            php $argv
-        case *.py
-            python $argv
-        case *.sh
-            sh $argc
-        case *.swift
-            swift $argv
-        case *.java
-            javac $argv
-        case *.tex
-            platex $argv
-            dvipdfmx (basename $argv .tex)
-            rm -f (basename $argv .tex).log (basename $argv .tex).aux (basename $argv .tex).dvi
-        case '*'
-            echo 'unknown filetype'
-    end
+	switch $argv
+		case *.c
+			gcc $argv -o (basename $argv .c)
+		case *.cc
+			g++ $argv
+		case *.rb
+			ruby $argv
+		case *.pl
+			perl $perl
+		case *.php
+			php $argv
+		case *.py
+			python $argv
+		case *.sh
+			sh $argc
+		case *.swift
+			swift $argv
+		case *.java
+			javac $argv
+		case *.tex
+			platex $argv
+			dvipdfmx (basename $argv .tex)
+			rm -f (basename $argv .tex).log (basename $argv .tex).aux (basename $argv .tex).dvi
+		case '*'
+			echo 'unknown filetype'
+	end
 end
 
 function fish_prompt --description 'Write out the prompt'
-    # Just calculate these once, to save a few cycles when displaying the prompt
-    if not set -q __fish_prompt_hostname
-    set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
-    end
+	# Just calculate these once, to save a few cycles when displaying the prompt
+	if not set -q __fish_prompt_hostname
+		set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
+	end
 
-    if not set -q __fish_prompt_normal
-    set -g __fish_prompt_normal (set_color normal)
-    end
+	if not set -q __fish_prompt_normal
+		set -g __fish_prompt_normal (set_color normal)
+	end
 
-    if not set -q __git_cb
-    set __git_cb ":"(set_color brown)(git branch ^/dev/null | grep \* | sed 's/* //')(set_color normal)""
-    end
+	if not set -q __git_cb
+		set __git_cb ":"(set_color brown)(git branch ^/dev/null | grep \* | sed 's/* //')(set_color normal)""
+	end
 
-    switch $USER
+	switch $USER
 
-    case root
+	case root
 
-    if not set -q __fish_prompt_cwd
-        if set -q fish_color_cwd_root
-            set -g __fish_prompt_cwd (set_color $fish_color_cwd_root)
-        else
-            set -g __fish_prompt_cwd (set_color $fish_color_cwd)
-        end
-    end
+	if not set -q __fish_prompt_cwd
+		if set -q fish_color_cwd_root
+			set -g __fish_prompt_cwd (set_color $fish_color_cwd_root)
+		else
+			set -g __fish_prompt_cwd (set_color $fish_color_cwd)
+		end
+	end
 
-    printf '%s@%s:%s%s%s%s# ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
+	printf '%s@%s:%s%s%s%s# ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
 
-    case '*'
+	case '*'
 
-    if not set -q __fish_prompt_cwd
-        set -g __fish_prompt_cwd (set_color $fish_color_cwd)
-    end
+	if not set -q __fish_prompt_cwd
+		set -g __fish_prompt_cwd (set_color $fish_color_cwd)
+	end
 
-    printf '%s@%s:%s%s%s%s$ ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
+	printf '%s@%s:%s%s%s%s$ ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
 
-    end
+	end
 end
 
 function cd
-    if test (count $argv) -eq 0
-        return 0
-    else if test (count $argv) -gt 1
-        printf "%s\n" (_ "Too many args for cd command")
-        return 1
-    end
-    # Avoid set completions.
-    set -l previous $PWD
+	if test (count $argv) -eq 0
+		return 0
+	else if test (count $argv) -gt 1
+		printf "%s\n" (_ "Too many args for cd command")
+		return 1
+	end
+	# Avoid set completions.
+	set -l previous $PWD
 
-    if test "$argv" = "-"
-        if test "$__fish_cd_direction" = "next"
-            nextd
-        else
-            prevd
-        end
-        return $status
-    end
-    builtin cd $argv
-    set -l cd_status $status
-    # Log history
-    if test $cd_status -eq 0 -a "$PWD" != "$previous"
-        set -q dirprev[$MAX_DIR_HIST]
-        and set -e dirprev[1]
-        set -g dirprev $dirprev $previous
-        set -e dirnext
-        set -g __fish_cd_direction prev
-    end
+	if test "$argv" = "-"
+		if test "$__fish_cd_direction" = "next"
+			nextd
+		else
+			prevd
+		end
+		return $status
+	end
+	builtin cd $argv
+	set -l cd_status $status
+	# Log history
+	if test $cd_status -eq 0 -a "$PWD" != "$previous"
+		set -q dirprev[$MAX_DIR_HIST]
+		and set -e dirprev[1]
+		set -g dirprev $dirprev $previous
+		set -e dirnext
+		set -g __fish_cd_direction prev
+	end
 
-    if test $cd_status -ne 0
-        return 1
-    end
-    ls
-    return $status
+	if test $cd_status -ne 0
+		return 1
+	end
+	ls
+	return $status
+end
+
+function tstream
+	/usr/local/bin/t stream timeline>$HOME/dotfiles/tweet
 end
