@@ -6,7 +6,7 @@ alias o open
 alias g git
 alias b 'build'
 alias ga 'git add -A'
-alias gp 'git push -u origin master'
+alias gp 'git push'
 alias gc 'git commit'
 alias gd 'git diff'
 alias gs 'git show'
@@ -73,6 +73,8 @@ function build
             platex $argv
             dvipdfmx (basename $argv .tex)
             rm -f (basename $argv .tex).log (basename $argv .tex).aux (basename $argv .tex).dvi
+        case *.exs
+            elixir $argv
         case '*'
             echo 'unknown filetype'
     end
