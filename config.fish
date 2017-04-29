@@ -155,5 +155,5 @@ function cd
 end
 
 function tstream
-	/usr/local/bin/t stream timeline>$HOME/dotfiles/tweet
+	/usr/local/bin/t stream timeline>$HOME/dotfiles/tweet&
 end
