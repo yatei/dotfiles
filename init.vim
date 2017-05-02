@@ -8,9 +8,10 @@ set pumheight=4
 set matchtime=1
 colorscheme delek
 filetype plugin indent on
-vnoremap <C-;> <Esc>
-cnoremap <C-;> <Esc>
-inoremap <C-;> <Esc>
+noremap ; :
+cnoremap Q q
+noremap z zR
+noremap Z zC
 
 "カーソル位置復元
 if has("autocmd")
