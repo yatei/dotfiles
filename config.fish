@@ -155,6 +155,6 @@ function cd
 	return $status
 end
 
-function tstream
+function tst
 	/usr/local/bin/t stream timeline>$HOME/dotfiles/tweet&
 end
