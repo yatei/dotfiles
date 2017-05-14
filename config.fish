@@ -151,7 +151,7 @@ function cd
 	if test $cd_status -ne 0
 		return 1
 	end
-	ls
+	ls -1
 	return $status
 end
 
