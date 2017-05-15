@@ -1,9 +1,9 @@
 #vim:filetype=conf
 
-alias v nvim
-alias l ls
-alias o open
-alias g git
+alias v 'nvim'
+alias l 'ls'
+alias o 'open'
+alias g 'git'
 alias b 'build'
 alias ga 'git add -A'
 alias gp 'git push'
@@ -44,7 +44,7 @@ end
 function gauto
 	ga
 	gc -m "auto commit"
-	gp origin master
+	gp origin $argv
 end
 
 function gcv
