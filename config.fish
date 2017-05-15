@@ -60,7 +60,7 @@ function build
 		case *.rb
 			ruby $argv
 		case *.pl
-			perl $perl
+			perl $argv
 		case *.php
 			php $argv
 		case *.py
