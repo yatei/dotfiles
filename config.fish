@@ -5,6 +5,7 @@ alias l 'ls'
 alias o 'open'
 alias g 'git'
 alias b 'build'
+alias e 'extract'
 alias ga 'git add -A'
 alias gp 'git push'
 alias gc 'git commit'
@@ -75,6 +76,8 @@ function build
 			platex $argv
 			dvipdfmx (basename $argv .tex)
 			rm -f (basename $argv .tex).log (basename $argv .tex).aux (basename $argv .tex).dvi
+		case *.md
+			pandoc $argv > (basename $argv .md).html
 		case '*'
 			echo 'unknown filetype'
 	end
@@ -157,4 +160,17 @@ end
 
 function tst
 	/usr/local/bin/t stream timeline>$HOME/dotfiles/tweet&
+end
+
+function extract #作れ
+	switch $argv
+		case *.zip
+		case *.gzip
+		case *.tar.gz
+		case *.tar.bz2
+		case *.7z
+		case *.rar
+		case *.tar.z
+		case *
+	end
 end
