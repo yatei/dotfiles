@@ -72,7 +72,10 @@ function build
 			swift $argv
 		case *.java
 			javac $argv
+		case *.go
+			go run $argv
 		case *.tex
+			platex $argv
 			platex $argv
 			dvipdfmx (basename $argv .tex)
 			rm -f (basename $argv .tex).log (basename $argv .tex).aux (basename $argv .tex).dvi
