@@ -1,4 +1,4 @@
-set number title ruler showmatch smartindent ignorecase smartcase wrapscan list cursorline
+set number title ruler showmatch smartindent ignorecase smartcase wrapscan list cursorline expandtab
 set listchars=tab:»-,trail:-,nbsp:%,eol:⏎
 set foldmethod=syntax
 set tabstop=2
