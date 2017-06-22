@@ -12,6 +12,7 @@ noremap ; :
 cnoremap Q q
 noremap z zR
 noremap Z zC
+noremap U <C-r>
 
 "カーソル位置復元
 if has("autocmd")
