@@ -26,6 +26,7 @@ alias ef 'nvim ~/.config/fish/config.fish'
 alias et 'nvim ~/.tmux.conf'
 alias ev 'nvim ~/.config/nvim/init.vim'
 alias lr 'ls -R'
+alias 目grep 'less'
 
 set fish_greeting ''
 set -U EDITOR nvim
