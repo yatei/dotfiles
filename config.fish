@@ -27,6 +27,7 @@ alias et 'nvim ~/.tmux.conf'
 alias ev 'nvim ~/.config/nvim/init.vim'
 alias lr 'ls -R'
 alias 目grep 'less'
+alias today "date +'%y%m%d'"
 
 set fish_greeting ''
 set -U EDITOR nvim
