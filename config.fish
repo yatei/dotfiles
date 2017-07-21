@@ -114,7 +114,7 @@ function fish_prompt --description 'Write out the prompt'
 		end
 	end
 
-	printf '%s@%s:%s%s%s%s# ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
+	printf '%s@%s:%s%s%s%s\n#' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
 
 	case '*'
 
@@ -122,7 +122,7 @@ function fish_prompt --description 'Write out the prompt'
 		set -g __fish_prompt_cwd (set_color $fish_color_cwd)
 	end
 
-	printf '%s@%s:%s%s%s%s$ ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
+	printf '%s@%s:%s%s%s%s\n$' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
 
 	end
 end
@@ -178,4 +178,16 @@ function extract #作れ
 		case *.tar.z
 		case *
 	end
+end
+
+function ucase
+  echo $argv|tr [a-z] [A-Z]
+end
+
+function lcase
+  echo $argv|tr [A-Z] [a-z]
+end
+
+function ascii
+  echo -n $argv|od -tu1 -An|tr -d ' \n'
 end
