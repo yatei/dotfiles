@@ -9,10 +9,10 @@ set matchtime=1
 colorscheme delek
 filetype plugin indent on
 noremap ; :
-cnoremap Q q
 noremap z zR
 noremap Z zC
 noremap U <C-r>
+nnoremap Y y$
 
 "カーソル位置復元
 if has("autocmd")
@@ -38,7 +38,6 @@ endif
 
 "quickrun用
 set splitbelow
-set splitright
 
 "deinの設定
 let g:python3_host_prog = '/usr/local/bin/python3'
