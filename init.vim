@@ -22,20 +22,6 @@ if has("autocmd")
     \ endif
 endif
 
-"全角スペース可視化
-if has("syntax")
-    syntax on
-    syn sync fromstart
-    function! ActivateInvisibleIndicator()
-        syntax match InvisibleJISX0208Space "　" display containedin=ALL
-        highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
-    endfunction
-    augroup invisible
-        autocmd! invisible
-        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
-    augroup END
-endif
-
 "quickrun用
 set splitbelow
 
@@ -61,9 +47,6 @@ call dein#begin(s:dein_dir)
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('scrooloose/syntastic')
-call dein#add('landaire/deoplete-swift')
-call dein#add('kballard/vim-swift')
-call dein#add('keith/swift.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('thinca/vim-quickrun')
