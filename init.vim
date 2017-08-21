@@ -23,7 +23,7 @@ if has("autocmd")
 endif
 
 "quickrun用
-set splitbelow
+"set splitbelow
 
 "deinの設定
 let g:python3_host_prog = '/usr/local/bin/python3'
@@ -49,8 +49,9 @@ call dein#add('Shougo/deoplete.nvim')
 call dein#add('scrooloose/syntastic')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
-call dein#add('thinca/vim-quickrun')
+"call dein#add('thinca/vim-quickrun')
 call dein#add('derekwyatt/vim-scala')
+call dein#add('munshkr/vim-tidal')
 "call dein#add('')
 call dein#end()
 if dein#check_install()
