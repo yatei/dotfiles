@@ -1,7 +1,7 @@
 #vim:filetype=conf
 
 alias v 'nvim'
-alias l 'ls'
+alias l 'ls -F'
 alias o 'open'
 alias g 'git'
 alias b 'build'
@@ -28,12 +28,14 @@ alias ev 'nvim ~/.config/nvim/init.vim'
 alias lr 'ls -R'
 alias 目grep 'less'
 alias today "date +'%y%m%d'"
+alias tailf "tail -f"
+alias lf "find (pwd)"
 
 set fish_greeting ''
 set -U EDITOR nvim
 
 set GOPATH $HOME/app/go/third-party $HOME/app/go/projects
-set PATH $PATH $HOME/app/bin $HOME/dotfiles $HOME/app/go/third-party/bin
+set PATH $PATH $HOME/app/bin $HOME/dotfiles $HOME/app/go/third-party/bin /opt/local/bin
 
 . ~/.config/fish/secret.fish
 
@@ -160,7 +162,7 @@ function cd
   if test $cd_status -ne 0
     return 1
   end
-  ls -1
+  ls -F
   return $status
 end
 
