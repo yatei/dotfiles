@@ -2,10 +2,9 @@
 
 alias v 'nvim'
 alias l 'ls'
-alias o 'open'
+alias o 'explorer.exe'
 alias g 'git'
 alias b 'build'
-alias e 'extract'
 alias ga 'git add -A'
 alias gp 'git push'
 alias gc 'git commit'
@@ -28,6 +27,7 @@ alias ev 'nvim ~/.config/nvim/init.vim'
 alias lr 'ls -R'
 alias 目grep 'less'
 alias today "date +'%y%m%d'"
+alias whome "cd /mnt/c/Users/yatei"
 
 set fish_greeting ''
 set -U EDITOR nvim
@@ -160,7 +160,7 @@ function cd
   if test $cd_status -ne 0
     return 1
   end
-  ls -1
+  ls
   return $status
 end
 
