@@ -37,6 +37,8 @@ set -U EDITOR nvim
 set GOPATH $HOME/app/go/third-party $HOME/app/go/projects
 set PATH $PATH $HOME/app/bin $HOME/dotfiles $HOME/app/go/third-party/bin /opt/local/bin
 
+export LSCOLORS=xbfxcxdxbxegedabagacad
+
 . ~/.config/fish/secret.fish
 
 if tmux list-sessions | grep attached >&-
