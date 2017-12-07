@@ -22,6 +22,9 @@ if has("autocmd")
     \ endif
 endif
 
+"quickrun用
+"set splitbelow
+
 "全角スペース可視化
 if has("syntax")
     syntax on
@@ -35,9 +38,6 @@ if has("syntax")
         autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
     augroup END
 endif
-
-"quickrun用
-set splitbelow
 
 "deinの設定
 let g:python3_host_prog = '/usr/local/bin/python3'
@@ -61,11 +61,11 @@ call dein#begin(s:dein_dir)
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('scrooloose/syntastic')
-call dein#add('landaire/deoplete-swift')
-call dein#add('kballard/vim-swift')
-call dein#add('keith/swift.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
+"call dein#add('thinca/vim-quickrun')
+call dein#add('derekwyatt/vim-scala')
+call dein#add('munshkr/vim-tidal')
 call dein#add('thinca/vim-quickrun')
 call dein#add('derekwyatt/vim-scala')
 "call dein#add('')
