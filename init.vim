@@ -25,6 +25,20 @@ endif
 "quickrun用
 "set splitbelow
 
+"全角スペース可視化
+if has("syntax")
+    syntax on
+    syn sync fromstart
+    function! ActivateInvisibleIndicator()
+        syntax match InvisibleJISX0208Space "　" display containedin=ALL
+        highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
+    endfunction
+    augroup invisible
+        autocmd! invisible
+        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
+    augroup END
+endif
+
 "deinの設定
 let g:python3_host_prog = '/usr/local/bin/python3'
 let s:dein_dir = expand('~/.vim/dein')
@@ -52,6 +66,8 @@ call dein#add('tomtom/tcomment_vim')
 "call dein#add('thinca/vim-quickrun')
 call dein#add('derekwyatt/vim-scala')
 call dein#add('munshkr/vim-tidal')
+call dein#add('thinca/vim-quickrun')
+call dein#add('derekwyatt/vim-scala')
 "call dein#add('')
 call dein#end()
 if dein#check_install()
