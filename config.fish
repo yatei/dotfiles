@@ -2,7 +2,7 @@
 
 alias v 'nvim'
 alias o 'explorer.exe'
-alias l 'ls -F'
+alias l 'ls'
 alias g 'git'
 alias b 'build'
 alias ga 'git add -A'
@@ -25,6 +25,7 @@ alias ef 'nvim ~/.config/fish/config.fish'
 alias et 'nvim ~/.tmux.conf'
 alias ev 'nvim ~/.config/nvim/init.vim'
 alias lr 'ls -R'
+alias l1 'ls -1'
 alias 目grep 'less'
 alias today "date +'%y%m%d'"
 alias whome "cd /mnt/c/Users/yatei"
@@ -51,6 +52,14 @@ function gauto
   ga
   gc -m "auto commit"
   gp origin $argv
+end
+
+function reboot
+  shutdown.exe -r -t 0
+end
+
+function poweroff
+  shutdown.exe -s -t 0
 end
 
 function gcv
@@ -128,6 +137,14 @@ function fish_prompt --description 'Write out the prompt'
   printf '%s@%s:%s%s%s%s$ ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
 
   end
+end
+
+function ls --description 'List contents of directory'
+  set -l param --color=auto
+  if isatty 1
+    set param $param --indicator-style=classify
+  end
+  command ls -F --ignore={"NTUSER*","ntuser*","\$*","*.sys"} $param $argv
 end
 
 function cd
