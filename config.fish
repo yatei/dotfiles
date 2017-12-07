@@ -1,7 +1,7 @@
 #vim:filetype=conf
 
 alias v 'nvim'
-alias l 'ls'
+alias l 'ls -F'
 alias o 'open'
 alias g 'git'
 alias b 'build'

@@ -13,6 +13,15 @@ noremap z zR
 noremap Z zC
 noremap U <C-r>
 nnoremap Y y$
+noremap T :tabnew 
+noremap t :tabnew<ENTER>
+:let tmp = @@
+:silent normal gvy
+:let selected = @@
+:let @@ = tmp
+:echo selected
+noremap q :%s/
+noremap Q :%s/
 
 "カーソル位置復元
 if has("autocmd")
@@ -68,6 +77,7 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('thinca/vim-quickrun')
 call dein#add('derekwyatt/vim-scala')
+call dein#add('udalov/kotlin-vim')
 "call dein#add('')
 call dein#end()
 if dein#check_install()
@@ -76,3 +86,5 @@ endif
 
 "syntaxハイライト有効
 syntax enable
+hi CursorLineNr cterm=reverse
+hi CursorLine cterm=bold
