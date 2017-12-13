@@ -15,6 +15,10 @@ noremap U <C-r>
 nnoremap Y y$
 noremap T :tabnew 
 noremap t :tabnew<CR>
+noremap <Tab> gt
+noremap <S-Tab> gT
+noremap ! :q!<CR>
+noremap @ :wq<CR>
 :let tmp = @@
 :silent normal gvy
 :let selected = @@
@@ -33,20 +37,6 @@ endif
 
 "quickrun用
 "set splitbelow
-
-"全角スペース可視化
-if has("syntax")
-    syntax on
-    syn sync fromstart
-    function! ActivateInvisibleIndicator()
-        syntax match InvisibleJISX0208Space "　" display containedin=ALL
-        highlight InvisibleJISX0208Space term=underline ctermbg=Blue guibg=darkgray gui=underline
-    endfunction
-    augroup invisible
-        autocmd! invisible
-        autocmd BufNew,BufRead * call ActivateInvisibleIndicator()
-    augroup END
-endif
 
 "deinの設定
 let g:python3_host_prog = '/usr/local/bin/python3'
