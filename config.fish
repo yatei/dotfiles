@@ -182,11 +182,6 @@ function extract #作れ
     case *.tar.z
     case *
   end
-	clear
-else if tmux list-sessions >&-
-	tmux attach
-else
-	tmux
 end
 
 function gauto
