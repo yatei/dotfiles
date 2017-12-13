@@ -14,7 +14,7 @@ noremap Z zC
 noremap U <C-r>
 nnoremap Y y$
 noremap T :tabnew 
-noremap t :tabnew<ENTER>
+noremap t :tabnew<CR>
 :let tmp = @@
 :silent normal gvy
 :let selected = @@
@@ -87,4 +87,4 @@ endif
 "syntaxハイライト有効
 syntax enable
 hi CursorLineNr cterm=reverse
-hi CursorLine cterm=bold
+hi clear CursorLine
