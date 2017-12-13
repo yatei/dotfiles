@@ -2,7 +2,7 @@
 
 alias v 'nvim'
 alias o 'explorer.exe'
-alias l 'ls'
+alias l 'ls -F'
 alias g 'git'
 alias b 'build'
 alias ga 'git add -A'

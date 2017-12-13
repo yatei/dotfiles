@@ -14,6 +14,13 @@ noremap Z zC
 noremap U <C-r>
 nnoremap Y y$
 nnoremap c <C-->
+noremap T :tabnew<CR>
+noremap t :tabnew 
+noremap <C-c> :q<CR>
+noremap <C-t> :NERDTree<CR>
+noremap <SPACE> <C-w>w
+noremap <C-Tab> gt
+noremap <C-S-Tab> gT
 
 "カーソル位置復元
 if has("autocmd")
@@ -54,6 +61,7 @@ call dein#add('thinca/vim-quickrun')
 call dein#add('derekwyatt/vim-scala')
 call dein#add('munshkr/vim-tidal')
 call dein#add('hsanson/vim-android')
+call dein#add('udalov/kotlin-vim')
 "call dein#add('')
 call dein#end()
 if dein#check_install()
@@ -62,3 +70,5 @@ endif
 
 "syntaxハイライト有効
 syntax enable
+hi CurrentLineNr cterm=reverse
+hi clear CursorLine
