@@ -38,6 +38,17 @@ endif
 "quickrun用
 "set splitbelow
 
+"LSP設定
+" call SpaceVim#layers#load('lsp',
+"     \ {
+"     \ 'filetypes' : ['rust',
+"                    \ 'typescript',
+"                    \ 'javascript',
+"                    \ 'clangd',
+"                    \ ],
+"     \ }
+" \ )
+
 "deinの設定
 let g:python3_host_prog = '/usr/local/bin/python3'
 let s:dein_dir = expand('~/.vim/dein')
@@ -50,7 +61,7 @@ if &compatible
 endif
 
 if !isdirectory(s:dein_repo_dir)
-  execute '!git clone git@github.com:Shougo/dein.vim.git' s:dein_repo_dir
+  execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 endif
 
 execute 'set runtimepath^=' . s:dein_repo_dir
@@ -62,11 +73,13 @@ call dein#add('Shougo/deoplete.nvim')
 call dein#add('scrooloose/syntastic')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
-"call dein#add('thinca/vim-quickrun')
+" call dein#add('thinca/vim-quickrun')
 call dein#add('derekwyatt/vim-scala')
 call dein#add('munshkr/vim-tidal')
 call dein#add('hsanson/vim-android')
-call dein#add('udalov/kotlin-vim')
+" call dein#add('udalov/kotlin-vim')
+" call dein#add('autozimu/LanguageClient-neovim')
+call dein#add('junegunn/fzf')
 "call dein#add('')
 call dein#end()
 if dein#check_install()
