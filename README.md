@@ -1,6 +1,4 @@
-# Mac用
-
-# status-leftもstatus-rightもキモい設定入れてなくて、nvimもプラグインなし
+# WSL用
 
 install:
 
