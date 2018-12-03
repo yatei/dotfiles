@@ -51,7 +51,6 @@ set -U EDITOR nvim
 set GOPATH $HOME/app/go/third-party $HOME/app/go/projects
 set PATH $PATH $HOME/app/bin $HOME/dotfiles $HOME/go/bin $HOME/app/go/third-party/bin /opt/local/bin
 set LSCOLORS xbfxcxdxbxegedabagacad
-set GOOGLE_APPLICATION_CREDENTIALS /Users/fujie/work/training/dataFlowLunch/DataFlowLunch-89c54a22201e.json
 
 if tmux list-sessions | grep attached >&-
   clear
