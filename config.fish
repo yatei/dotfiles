@@ -6,16 +6,31 @@ alias o 'open'
 alias g 'git'
 alias b 'build'
 alias e 'extract'
+alias k 'kubectl'
+alias c 'cat'
+alias vd 'cd'
+alias ka 'kubectl apply -f'
+alias kc 'kubectl config'
+alias kch 'kubecrl config use-context'
+alias kg 'kubectl get'
+alias kga 'kubectl get all'
+alias kgp 'kubectl get pods'
+alias kd 'kubectl describe'
+alias ke 'kubectl exec -it'
+alias stc 'stern console --all-namespaces'
 alias ga 'git add -A'
 alias gp 'git push'
 alias gc 'git commit'
 alias gd 'git diff'
 alias gs 'git status'
+alias gsh 'git show'
 alias gb 'git branch'
+alias gcb 'gb|grep "*"|tr -d " *\n"'
 alias gch 'git checkout'
 alias gsb 'git show-branch'
 alias gpl 'git pull'
 alias gcl 'git clone'
+alias gl 'git log'
 alias tm 'tmux'
 alias ta 'tmux attach'
 alias tl 'tmux list-sessions'
@@ -33,12 +48,10 @@ alias lf "find (pwd)"
 
 set fish_greeting ''
 set -U EDITOR nvim
-
 set GOPATH $HOME/app/go/third-party $HOME/app/go/projects
-set PATH $PATH $HOME/app/bin $HOME/dotfiles $HOME/app/go/third-party/bin /opt/local/bin
-
-export LSCOLORS=xbfxcxdxbxegedabagacad
-set PATH $PATH ~/app/bin ~/dotfiles
+set PATH $PATH $HOME/app/bin $HOME/dotfiles $HOME/go/bin $HOME/app/go/third-party/bin /opt/local/bin
+set LSCOLORS xbfxcxdxbxegedabagacad
+set GOOGLE_APPLICATION_CREDENTIALS /Users/fujie/work/training/dataFlowLunch/DataFlowLunch-89c54a22201e.json
 
 if tmux list-sessions | grep attached >&-
   clear
@@ -60,6 +73,8 @@ end
 
 function build
   switch $argv
+    case *.scala
+      scala $argv
     case *.c
       gcc $argv -o (basename $argv .c)
     case *.cc
@@ -95,7 +110,8 @@ end
 function fish_prompt --description 'Write out the prompt'
   # Just calculate these once, to save a few cycles when displaying the prompt
   if not set -q __fish_prompt_hostname
-    set -g __fish_prompt_hostname (hostname|cut -d . -f 1)
+    # set -g __fish_prompt_hostname (hostname -s)
+    set -g __fish_prompt_hostname local
   end
 
   if not set -q __fish_prompt_normal
@@ -103,7 +119,11 @@ function fish_prompt --description 'Write out the prompt'
   end
 
   if not set -q __git_cb
-    set __git_cb ":"(set_color brown)(git branch ^/dev/null | grep \* | sed 's/* //')(set_color normal)""
+    set __git_cb ":"(set_color yellow)(git branch ^/dev/null | grep \* | sed 's/* //')(set_color normal)""
+  end
+
+  if not set -q __k8s_cn
+    set __k8s_cn ":"(set_color red)(kubectl config current-context|tr -d '\n')(set_color normal)""
   end
 
   switch $USER
@@ -118,7 +138,7 @@ function fish_prompt --description 'Write out the prompt'
     end
   end
 
-  printf '%s@%s:%s%s%s%s# ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
+  printf '%s@%s:%s%s%s%s%s# ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb $__k8s_cn
 
   case '*'
 
@@ -126,7 +146,7 @@ function fish_prompt --description 'Write out the prompt'
     set -g __fish_prompt_cwd (set_color $fish_color_cwd)
   end
 
-  printf '%s@%s:%s%s%s%s$ ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb
+  printf '%s@%s:%s%s%s%s%s$ ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb $__k8s_cn
 
   end
 end
@@ -203,3 +223,10 @@ end
 
 test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
 
+function weather
+  curl wttr.in/~Minato-ku
+end
+
+function line
+  head -n $argv|tail -n 1
+end

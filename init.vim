@@ -1,4 +1,4 @@
-set number title ruler showmatch smartindent ignorecase smartcase wrapscan list cursorline expandtab
+set number title ruler showmatch smartindent ignorecase smartcase wrapscan list cursorline expandtab wildmenu
 set listchars=trail:-,nbsp:%,eol:⏎
 set foldmethod=syntax
 set tabstop=2
@@ -6,7 +6,6 @@ set shiftwidth=2
 set display=lastline
 set pumheight=4
 set matchtime=1
-colorscheme delek
 filetype plugin indent on
 noremap ; :
 noremap z zR
@@ -26,6 +25,11 @@ noremap @ :wq<CR>
 :echo selected
 noremap q :%s/
 noremap Q :%s/
+inoremap { {}
+inoremap [ []
+inoremap ( ()<Left>
+noremap PP "0p
+noremap x "_x
 
 "カーソル位置復元
 if has("autocmd")
@@ -45,6 +49,7 @@ endif
 "                    \ 'typescript',
 "                    \ 'javascript',
 "                    \ 'clangd',
+"                    \ 'go',
 "                    \ ],
 "     \ }
 " \ )
@@ -70,6 +75,7 @@ execute 'set runtimepath^=' . s:dein_repo_dir
 call dein#begin(s:dein_dir)
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/deoplete.nvim')
+call dein#add('Shougo/vimshell.git')
 call dein#add('scrooloose/syntastic')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
@@ -78,15 +84,21 @@ call dein#add('derekwyatt/vim-scala')
 call dein#add('munshkr/vim-tidal')
 call dein#add('hsanson/vim-android')
 " call dein#add('udalov/kotlin-vim')
-" call dein#add('autozimu/LanguageClient-neovim')
+call dein#add('autozimu/LanguageClient-neovim')
 call dein#add('junegunn/fzf')
-"call dein#add('')
+call dein#add('fatih/vim-go')
+call dein#add('c9s/helper.vim')
+call dein#add('c9s/treemenu.vim')
+call dein#add('c9s/vikube.vim')
+call dein#add('tomasr/molokai')
+call dein#add('sjl/badwolf')
 call dein#end()
 if dein#check_install()
   call dein#install()
 endif
 
 "syntaxハイライト有効
+colorscheme molokai
 syntax enable
 hi CursorLineNr cterm=reverse
 hi clear CursorLine
