@@ -49,7 +49,7 @@ alias lf "find (pwd)"
 set fish_greeting ''
 set -U EDITOR nvim
 set GOPATH $HOME/app/go/third-party $HOME/app/go/projects
-set PATH $PATH $HOME/app/bin $HOME/dotfiles $HOME/go/bin $HOME/app/go/third-party/bin /opt/local/bin
+set PATH $PATH $HOME/app/bin $HOME/dotfiles $HOME/go/bin $HOME/app/go/third-party/bin /opt/local/bin $HOME/Downloads/google-cloud-sdk/bin /usr/local/opt/mysql-client/bin
 set LSCOLORS xbfxcxdxbxegedabagacad
 
 if tmux list-sessions | grep attached >&-

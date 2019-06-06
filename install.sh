@@ -1,40 +1,38 @@
-#!/usr/local/bin/fish
+#!/bin/sh
 
-#tmux
-if ls ~/.tmux.conf
-	rm ~/.tmux.conf
-end
-ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-if [ $status -eq 1 ];echo 1;end;exit
+# check home brew
+if [ $(brew --version 2>/dev/null; echo $?) -ne 0 ]; then
+    echo "not found \"brew\" command. installing..."
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    echo "done"
+fi
 
+# check .config/ dir
+if [ ! -e $HOME/.config ]; then mkdir $HOME/.config; fi
 
-#.config/ dir check
-if ls ~/.config
-else
-	mkdir ~/.config
-end
-if [ $status -eq 1 ];false;end;exit
+# check fish
+if [ $(fish --version 2>/dev/null; echo $?) -ne 0 ]; then
+    echo "not found \"fish\" command. installing..."
+    mkdir $HOME/.config/fish
+    brew install fish
+    echo "done"
+fi
+ln -s $HOME/dotfiles/config.fish $HOME/.config/fish/config.fish
 
+# check neovim
+if [ $(nvim --version 2>/dev/null; echo $?) -ne 0 ]; then
+    echo "not found \"neovim\" command. installing..."
+    mkdir $HOME/.config/nvim/
+    brew install neovim
+    echo "done"
+fi
+ln -s $HOME/dotfiles/init.vim $HOME/.config/nvim/init.vim
 
-#fish
-if ls ~/.config/fish
-	if ls ~/.config/fish/config.fish
-		rm ~/.config/fish/config.fish
-	end
-else
-	mkdir ~/.config/fish
-end
-ln -s ~/dotfiles/config.fish ~/.config/fish/
-if [ $status -eq 1 ];false;end;exit
+# check tmux
+if [ $(tmux -V 2>/dev/null; echo $?) -ne 0 ]; then
+    echo "not found \"tmux\" command. installing..."
+    brew install tmux
+    echo "done"
+fi
+ln -s $HOME/dotfiles/tmux.conf $HOME/.tmux.conf
 
-
-#nvim
-if ls ~/.config/nvim
-	if ls ~/.config/nvim/init.vim
-		rm ~/.config/nvim/init.vim
-	end
-else
-	mkdir ~/.config/nvim
-end
-ln -s ~/dotfiles/init.vim ~/.config/nvim/
-if [ $status -eq 1 ];false;end;exit

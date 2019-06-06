@@ -25,11 +25,12 @@ noremap @ :wq<CR>
 :echo selected
 noremap q :%s/
 noremap Q :%s/
-inoremap { {}
-inoremap [ []
+inoremap { {}<Left>
+inoremap [ []<Left>
 inoremap ( ()<Left>
 noremap PP "0p
 noremap x "_x
+au BufNewFile,BufRead *.tfvars setf conf
 
 "カーソル位置復元
 if has("autocmd")
@@ -84,7 +85,7 @@ call dein#add('derekwyatt/vim-scala')
 call dein#add('munshkr/vim-tidal')
 call dein#add('hsanson/vim-android')
 " call dein#add('udalov/kotlin-vim')
-call dein#add('autozimu/LanguageClient-neovim')
+"call dein#add('autozimu/LanguageClient-neovim')
 call dein#add('junegunn/fzf')
 call dein#add('fatih/vim-go')
 call dein#add('c9s/helper.vim')
@@ -92,6 +93,7 @@ call dein#add('c9s/treemenu.vim')
 call dein#add('c9s/vikube.vim')
 call dein#add('tomasr/molokai')
 call dein#add('sjl/badwolf')
+call dein#add('mechatroner/rainbow_csv')
 call dein#end()
 if dein#check_install()
   call dein#install()
