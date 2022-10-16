@@ -1,40 +1,35 @@
-#!/usr/local/bin/fish
+#!/bin/bash
+
+# install
+# brew install tmux fish neovim
+# pip3 install --upgrade pip
+# pip3 install pynvim
+# pip3 install neovim
+
+# homebrew
+if [ $(which brew) ]; then 
+  echo "brew is already installed. skip"
+else
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+brew bundle --file ./Brewfile
 
 #tmux
-if ls ~/.tmux.conf
+if [ $(ls ~/.tmux.conf 2>/dev/null) ]; then
 	rm ~/.tmux.conf
-end
+fi
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
-if [ $status -eq 1 ];echo 1;end;exit
-
-
-#.config/ dir check
-if ls ~/.config
-else
-	mkdir ~/.config
-end
-if [ $status -eq 1 ];false;end;exit
-
 
 #fish
-if ls ~/.config/fish
-	if ls ~/.config/fish/config.fish
-		rm ~/.config/fish/config.fish
-	end
-else
-	mkdir ~/.config/fish
-end
+if [ $(ls ~/.config/fish/config.fish) ]; then
+  rm ~/.config/fish/config.fish
+fi
+mkdir -p ~/.config/fish
 ln -s ~/dotfiles/config.fish ~/.config/fish/
-if [ $status -eq 1 ];false;end;exit
-
 
 #nvim
-if ls ~/.config/nvim
-	if ls ~/.config/nvim/init.vim
-		rm ~/.config/nvim/init.vim
-	end
-else
-	mkdir ~/.config/nvim
-end
+if [ $(ls ~/.config/nvim/init.vim) ]; then
+  rm ~/.config/nvim/init.vim
+fi
+mkdir ~/.config/nvim
 ln -s ~/dotfiles/init.vim ~/.config/nvim/
-if [ $status -eq 1 ];false;end;exit
