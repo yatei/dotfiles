@@ -42,20 +42,8 @@ endif
 "quickrun用
 "set splitbelow
 
-"LSP設定
-" call SpaceVim#layers#load('lsp',
-"     \ {
-"     \ 'filetypes' : ['rust',
-"                    \ 'typescript',
-"                    \ 'javascript',
-"                    \ 'clangd',
-"                    \ 'go',
-"                    \ ],
-"     \ }
-" \ )
-
 "deinの設定
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/bin/python3'
 let s:dein_dir = expand('~/.vim/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 let g:deoplete#enable_at_startup = 1
@@ -79,17 +67,10 @@ call dein#add('Shougo/vimshell.git')
 call dein#add('scrooloose/syntastic')
 call dein#add('scrooloose/nerdtree')
 call dein#add('tomtom/tcomment_vim')
-" call dein#add('thinca/vim-quickrun')
-call dein#add('derekwyatt/vim-scala')
 call dein#add('munshkr/vim-tidal')
-call dein#add('hsanson/vim-android')
-" call dein#add('udalov/kotlin-vim')
-call dein#add('autozimu/LanguageClient-neovim')
 call dein#add('junegunn/fzf')
-call dein#add('fatih/vim-go')
 call dein#add('c9s/helper.vim')
 call dein#add('c9s/treemenu.vim')
-call dein#add('c9s/vikube.vim')
 call dein#add('tomasr/molokai')
 call dein#add('sjl/badwolf')
 call dein#end()

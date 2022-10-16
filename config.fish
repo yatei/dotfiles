@@ -1,5 +1,6 @@
 #vim:filetype=conf
 
+# Alias
 alias v 'nvim'
 alias l 'ls -F'
 alias o 'open'
@@ -46,12 +47,14 @@ alias today "date +'%y%m%d'"
 alias tailf "tail -f"
 alias lf "find (pwd)"
 
+# Env
 set fish_greeting ''
 set -U EDITOR nvim
-set GOPATH $HOME/app/go/third-party $HOME/app/go/projects
-set PATH $PATH $HOME/app/bin $HOME/dotfiles $HOME/go/bin $HOME/app/go/third-party/bin /opt/local/bin
+set GOPATH $HOME/go/third-party $HOME/go/projects
+set PATH $PATH $HOME/app/bin $HOME/dotfiles /opt/homebrew/bin $HOME/.goenv/bin $HOME/app/go/third-party/bin /opt/local/bin $HOME/.goenv/shims
 set LSCOLORS xbfxcxdxbxegedabagacad
 
+# Recover tmux session
 if tmux list-sessions | grep attached >&-
   clear
 else if tmux list-sessions >&-
@@ -60,52 +63,7 @@ else
   tmux
 end
 
-function gauto
-  ga
-  gc -m "auto commit"
-  gp origin $argv
-end
-
-function gcv
-  g++ -I/usr/local/Cellar/opencv/2.4.13.2/include/opencv -I/usr/local/Cellar/opencv/2.4.13.2/include -L/usr/local/Cellar/opencv/2.4.13.2/lib -lopencv_calib3d -lopencv_contrib -lopencv_core -lopencv_features2d -lopencv_flann -lopencv_gpu -lopencv_highgui -lopencv_imgproc -lopencv_legacy -lopencv_ml -lopencv_nonfree -lopencv_objdetect -lopencv_ocl -lopencv_photo -lopencv_stitching -lopencv_superres -lopencv_ts -lopencv_video -lopencv_videostab $argv
-end
-
-function build
-  switch $argv
-    case *.scala
-      scala $argv
-    case *.c
-      gcc $argv -o (basename $argv .c)
-    case *.cc
-      g++ $argv
-    case *.rb
-      ruby $argv
-    case *.pl
-      perl $argv
-    case *.php
-      php $argv
-    case *.py
-      python $argv
-    case *.sh
-      sh $argc
-    case *.swift
-      swift $argv
-    case *.java
-      javac $argv
-    case *.go
-      go run $argv
-    case *.tex
-      platex $argv
-      platex $argv
-      dvipdfmx (basename $argv .tex)
-      rm -f (basename $argv .tex).log (basename $argv .tex).aux (basename $argv .tex).dvi
-    case *.md
-      pandoc $argv > (basename $argv .md).html
-    case '*'
-      echo 'unknown filetype'
-  end
-end
-
+# Set prompt
 function fish_prompt --description 'Write out the prompt'
   # Just calculate these once, to save a few cycles when displaying the prompt
   if not set -q __fish_prompt_hostname
@@ -118,11 +76,15 @@ function fish_prompt --description 'Write out the prompt'
   end
 
   if not set -q __git_cb
-    set __git_cb ":"(set_color yellow)(git branch ^/dev/null | grep \* | sed 's/* //')(set_color normal)""
+    set __git_cb ":"(set_color yellow)(git branch 2>/dev/null | grep \* | sed 's/* //')(set_color normal)""
   end
 
   if not set -q __k8s_cn
     set __k8s_cn ":"(set_color red)(kubectl config current-context|tr -d '\n')(set_color normal)""
+  end
+
+  if not set -q __gcloud_cnf
+    set __gcloud_cnf ":"(set_color red)(cat ~/.config/gcloud/active_config|tr -d '\n')(set_color normal)""
   end
 
   switch $USER
@@ -137,7 +99,7 @@ function fish_prompt --description 'Write out the prompt'
     end
   end
 
-  printf '%s@%s:%s%s%s%s%s# ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb $__k8s_cn
+  printf '%s@%s:%s%s%s%s%s# ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb $__gcloud_cnf
 
   case '*'
 
@@ -145,11 +107,13 @@ function fish_prompt --description 'Write out the prompt'
     set -g __fish_prompt_cwd (set_color $fish_color_cwd)
   end
 
-  printf '%s@%s:%s%s%s%s%s$ ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb $__k8s_cn
+  printf '%s@%s:%s%s%s%s%s$ ' $USER $__fish_prompt_hostname "$__fish_prompt_cwd" (prompt_pwd) "$__fish_prompt_normal" $__git_cb $__gcloud_cnf
 
   end
 end
 
+
+# behavior "cd" command
 function cd
   if test (count $argv) -eq 0
     return 0
@@ -186,20 +150,18 @@ function cd
   return $status
 end
 
-function tst
-  /usr/local/bin/t stream timeline>$HOME/dotfiles/tweet&
-end
-
-function extract #作れ
+function extract
   switch $argv
     case *.zip
+      unzip $argv
     case *.gzip
+      gunzip $argv
     case *.tar.gz
+      tar zxvf $argv
     case *.tar.bz2
-    case *.7z
-    case *.rar
-    case *.tar.z
+      tar bxvf $argv
     case *
+      echo "?"
   end
 end
 
@@ -216,7 +178,7 @@ function ascii
 end
 
 function iterm2_print_user_vars
-  set -l git_branch (git branch ^/dev/null | sed -n '/\* /s///p')
+  set -l git_branch (git branch 2>/dev/null | sed -n '/\* /s///p')
   iterm2_set_user_var gitBranch "$git_branch"
 end
 
@@ -229,3 +191,6 @@ end
 function line
   head -n $argv|tail -n 1
 end
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/fujie/google-cloud-sdk/path.fish.inc' ]; . '/Users/fujie/google-cloud-sdk/path.fish.inc'; end
